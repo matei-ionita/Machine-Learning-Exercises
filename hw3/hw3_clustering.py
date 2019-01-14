@@ -2,7 +2,7 @@ import numpy as np
 import sys
 
 #Set the meta-parameters: K is the number of clusters, T the number of iterations
-K, T = 5, 10
+K, T = 3, 15
 
 
 #A method that evaluates a Gaussian function, with given mean and covariance, at the argument x
@@ -46,9 +46,12 @@ def KMeans(data,n):
 			centroids[k] = np.sum(data[cluster_k][:],axis=0)
 			centroids[k]/= nk
 
-		#Output the result after the current iteration
-		filename = "centroids-" + str(t+1) + ".csv" 
-		np.savetxt(filename, centroids, delimiter=",")
+		#Output the centroid coordinates after the current iteration
+		# filename = "centroids-" + str(t+1) + ".csv" 
+		# np.savetxt(filename, centroids, delimiter=",")
+
+	#Output the final cluster assignments
+	np.savetxt("assignments.csv", c, delimiter="\n")
 
 
 #Gaussian Mixture Model (GMM) clustering, using the Expectation-Maximization algorithm (EM)
@@ -99,13 +102,15 @@ def EMGMM(data,n):
 		for k in range(K): 
 			filename = "Sigma-" + str(k+1) + "-" + str(t+1) + ".csv" 
 			np.savetxt(filename, sigma[k], delimiter=",")
-		print(mu)
 		
 
 if __name__ == '__main__':
-	X = np.genfromtxt(sys.argv[1], delimiter = ",") #Read data from file
-	n = len(X)
-	X = X[:,6:9]	#Select features (columns) to do training on
+	if len(sys.argv) != 2:
+		print("Please run as: python "+ sys.argv[0] + " dataset_filename")
+	else:
+		X = np.genfromtxt(sys.argv[1], delimiter = ",") #Read data from file
+		n = len(X)
+		X = X[:,7:10]	#Select features (columns) to do training on
 
-	KMeans(X,n)
-	EMGMM(X,n)
+		KMeans(X,n)
+		EMGMM(X,n)
