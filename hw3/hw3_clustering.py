@@ -2,7 +2,7 @@ import numpy as np
 import sys
 
 #Set the meta-parameters: K is the number of clusters, T the number of iterations
-K, T = 3, 15
+K, T = 3, 10
 
 
 #A method that evaluates a Gaussian function, with given mean and covariance, at the argument x
@@ -18,13 +18,13 @@ def gaussian(x, mean, cov):
 
 #The K-means algorithm for clustering
 def KMeans(data,n):
-	np.random.seed(0)
+	np.random.seed(0) #For reproducible results, seed the random generator
 	centroids = data[np.random.randint(n, size = K)]	#To initialize centroids, pick K datapoints uniformly at random
 
 	c = np.zeros(n)	#Will hold cluster assignments for all datapoints
 
 	'''
-	We reach a local minimum of the loss function using coordinate descent. For each iteration t,
+	We look for a local minimum of the loss function using coordinate descent. For each iteration t,
 	first update cluster assignments, keeping the centroids fixed,
 	then update centroids, keeping the cluster assignments fixed.
 	'''
@@ -46,12 +46,8 @@ def KMeans(data,n):
 			centroids[k] = np.sum(data[cluster_k][:],axis=0)
 			centroids[k]/= nk
 
-		#Output the centroid coordinates after the current iteration
-		# filename = "centroids-" + str(t+1) + ".csv" 
-		# np.savetxt(filename, centroids, delimiter=",")
-
 	#Output the final cluster assignments
-	np.savetxt("assignments.csv", c, delimiter="\n")
+	np.savetxt("kmeans_assignments.csv", c, delimiter="\n")
 
 
 #Gaussian Mixture Model (GMM) clustering, using the Expectation-Maximization algorithm (EM)
@@ -59,9 +55,9 @@ def EMGMM(data,n):
 	d = len(data[0])
 
 	#Initialize cluster priors and cluster likelihoods
-	pi = 1/K * np.ones(K)	#Cluster prior is uniform
-	np.random.seed(0)
-	mu = data[np.random.randint(n, size = K)]	#Cluster likelihood is Gaussian, centered on a datapoint sampled uniformly at random
+	pi = 1/K * np.ones(K)	#Initial cluster prior is uniform
+	np.random.seed(0)	#For reproducible results, seed the random generator
+	mu = data[np.random.randint(n, size = K)]	#Initial cluster likelihood is Gaussian, centered on a datapoint sampled uniformly at random
 	sigma = [np.eye(d)]*K 						#Covariance is identity matrix
 
 	phi = np.zeros( (n,K) )	#phi[i,k] will hold the probability that datapoint i belongs to cluster k
@@ -85,23 +81,17 @@ def EMGMM(data,n):
 			partial_mu = np.zeros(d)
 			for i in range(n): 
 				partial_mu += phi[i,k] * data[i]
-			mu[k,:] = partial_mu/nk #Update centroid with the weighted average of datapoint currently assigned to it
+			mu[k,:] = partial_mu/nk #Update mean for current cluster with the weighted average of datapoints currently assigned to it
 
 			partial_sigma = np.zeros((d,d))
 			for i in range(n): 
 				v = (data[i] - mu[k]).reshape(d,1)
 				partial_sigma += phi[i,k] * np.dot(v,np.transpose(v))
-			sigma[k] = partial_sigma / nk #Update covariance, for current cluster, with the average of the spreads of all datapoints currently assigned to it
+			sigma[k] = partial_sigma / nk #Update covariance for current cluster
 
-		#Output the result after current iteration
-		filename = "pi-" + str(t+1) + ".csv" 
-		np.savetxt(filename, pi, delimiter=",") 
-		filename = "mu-" + str(t+1) + ".csv"
-		np.savetxt(filename, mu, delimiter=",")
+	c = np.argmax( phi,axis=1 ) #For each datapoint, find the cluster it most likely belongs to, according to the distribution phi
+	np.savetxt("gmm_assignments.csv", c, delimiter="\n")
 
-		for k in range(K): 
-			filename = "Sigma-" + str(k+1) + "-" + str(t+1) + ".csv" 
-			np.savetxt(filename, sigma[k], delimiter=",")
 		
 
 if __name__ == '__main__':
@@ -110,7 +100,8 @@ if __name__ == '__main__':
 	else:
 		X = np.genfromtxt(sys.argv[1], delimiter = ",") #Read data from file
 		n = len(X)
-		X = X[:,7:10]	#Select features (columns) to do training on
+		features = [1,2,3,4,6,7,8,9,10,11,12]	#Select features (columns) to do training on
+		X = X[:,features]
 
 		KMeans(X,n)
 		EMGMM(X,n)

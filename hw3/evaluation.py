@@ -17,8 +17,8 @@ if __name__ == '__main__':
 		penalty = 0
 		for k in range(1,K+1):
 			l = [i for i in range(n) if label[i]==k]	#List datapoints with label k
-			cluster_label = max( set(result[l]), key=list(result[l]).count ) #Find 
+			cluster_label = max( set(result[l]), key=list(result[l]).count ) #What label K-means most often assigns to datapoints with true label k
 			for point in l:
-				if result[point] != cluster_label: penalty +=1
+				if result[point] != cluster_label: penalty +=1 #Incur a penalty of 1 for each misclassified datapoint
 
 		print(penalty)
