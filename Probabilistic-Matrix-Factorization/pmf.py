@@ -1,6 +1,9 @@
 import numpy as np
 import sys
 
+#Run as: python pmf.py ratings.csv
+
+
 
 #Set meta-parameters
 lam = 2	#Weight of the ridge terms in the loss function

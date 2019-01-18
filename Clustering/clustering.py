@@ -1,6 +1,8 @@
 import numpy as np
 import sys
 
+#Run as: python clustering.py wine.csv
+
 #Set the meta-parameters: K is the number of clusters, T the number of iterations
 K, T = 3, 10
 
