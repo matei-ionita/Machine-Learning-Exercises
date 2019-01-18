@@ -1,0 +1,7 @@
+Evaluated the algorithms on the MNIST dataset.
+
+First used PCA feature reduction, followed by Naive Bayes implemented by hand. After selecting the optimal number of
+principal components (16) and train/test data (5000), obtained 73% accuracy.
+
+Then used sklean's LDA for feature reduction and classification. After selecting the optimal number of
+principal components (16) and train/test data (5000), obtained 84% accuracy.
