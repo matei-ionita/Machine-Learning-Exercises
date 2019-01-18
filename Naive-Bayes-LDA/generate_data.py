@@ -23,5 +23,7 @@ if __name__ == "__main__":
 		X_train = np.vstack([X_train,X])
 		y_train = np.vstack([y_train,y])
 
-	np.savetxt("X_train.csv", X_train, fmt="%.6f", delimiter=",") 
-	np.savetxt("y_train.csv", y_train, fmt="%d", delimiter=",")
+	index = np.arange(m*k).reshape((m*k,1)) # Generate the index of each data point
+	train_data = np.concatenate((index, y_train, X_train), axis = 1) # Concatenate index, label and features
+
+	np.savetxt("train.csv", train_data, fmt="%.6f", delimiter=",") 

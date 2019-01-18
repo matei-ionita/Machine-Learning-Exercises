@@ -3,11 +3,22 @@
 A collection of ML algorithms that I implemented from scratch in Python. 
 The goal is to familiarize myself with the algorithms, rather than to implement them as efficiently or elegantly as possible.
 
-The 'hw' folders contain assignments for the ColumbiaX Machine Learning course.
+The Naive Bayes, Clustering and Probabilistic Matrix Factorization problems are inspired from the programming assignments
+of the ColumbiaX course "Machine Learning". However, I've added extra preprocessing steps, other algorithms for comparison,
+and experimented with them on real-world data sets.
 
-# hw3
-hw3 implements two different clustering algorithms: K-means and Expectation-Maximization for Gaussian Mixture Models.
+# Naive Bayes and LDA
+Evaluated the performance of PCA for feature selection, followed by a Naive Bayes classifier, implemented by hand. Compared this
+with the performance of the sklearn implementation of the LDA classifier. Evaluation was done on the MNIST dataset.
+Run as: python naive_bayes.py train.csv
+
+# Clustering
+Implemented by hand two different clustering algorithms: K-means and Expectation-Maximization for Gaussian Mixture Models.
 The data set wine.csv is the Wine data set from the UCI Machine Learning Repository.
+Run as: python clustering.py wine.csv
 
-# References
-Dua, D. and Karra Taniskidou, E. (2017). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science. 
+# Probabilistic Matrix Factorization
+hw4 implements the Probabilistic Matrix Factorization algorithm, with application to recommender systems. The data set ratings.csv
+contains, on each line, a tuple (user, product, rating). The output file ratings_predicted.csv contains a matrix of predicted
+ratings, for all users and products.
+Run as: python pmf.py ratings.csv
