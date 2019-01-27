@@ -1,0 +1,102 @@
+With 15000 data samples, 250 steps, and layer sizes: [93]
+Learning rate 1
+Training accuracy is 0.9741645137094758
+Testing accuracy is 0.945
+
+
+With 5000 data samples, 250 steps, and layer sizes: [93, 101]
+Learning rate 0.3
+Training accuracy is 0.9959989997499374
+Testing accuracy is 0.927
+
+
+With 5000 data samples, 250 steps, and layer sizes: [93, 101, 73]
+Learning rate 0.1
+Training accuracy is 0.9879969992498124
+Testing accuracy is 0.917
+
+
+With 5000 data samples, 500 steps, and layer sizes: [93, 101, 73]
+Learning rate 0.05
+Training accuracy is 0.9912478119529883
+Testing accuracy is 0.92
+
+
+With 15000 data samples, 500 steps, 0.05learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9629135761313443
+Testing accuracy is 0.9323333333333333
+
+
+With 15000 data samples, 650 steps, 0.05 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9709975831319276
+Testing accuracy is 0.9336666666666666
+
+WITH PCA N=200:
+
+With 15000 data samples, 650 steps, 0.05 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9568297358113176
+Testing accuracy is 0.9093333333333333
+
+
+With 15000 data samples, 800 steps, 0.07 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.978914909575798
+Testing accuracy is 0.926
+
+
+With 15000 data samples, 1200 steps, 0.07 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9903325277106425
+Testing accuracy is 0.931
+
+
+With 30000 data samples, 1200 steps, 0.07 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9757489895412309
+Testing accuracy is 0.9475
+
+
+With 30000 data samples, 1200 steps, 0.085 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9801241718404934
+Testing accuracy is 0.949
+
+
+With 41000 data samples, 1500 steps, 0.085 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9791593268110247
+Testing accuracy is 0.9529268292682926
+
+
+With 41900 data samples, 1500 steps, 1 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 1.0
+Testing accuracy is 0.9630071599045346
+
+
+With 41900 data samples, 600 steps, 1 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9980641226232464
+Testing accuracy is 0.9627684964200477
+
+With 41900 data samples, 800 steps, 1 learning rate and layer sizes: [93, 101, 73]
+Training accuracy is 0.9996817735819036
+Testing accuracy is 0.9620525059665871
+
+With 10000 data samples, 300 steps, 0.5 learning rate, 50 regulatization and layer sizes: [93, 101, 73]
+Training accuracy is 0.9839979997499687
+Testing accuracy is 0.9435
+
+With 10000 data samples, 300 steps, 0.5 learning rate, 100 regularization and layer sizes: [93, 101, 73]
+Training accuracy is 0.9537442180272534
+Testing accuracy is 0.918
+
+With 10000 data samples, 500 steps, 0.5 learning rate, 100 regularization and layer sizes: [93, 101, 73]
+Training accuracy is 0.9661207650956369
+Testing accuracy is 0.935
+
+With 41900 data samples, 1500 steps, 0.3 learning rate, 100 regularization and layer sizes: [93, 101, 73]
+Training accuracy is 0.9875640639131745
+Testing accuracy is 0.9684964200477327
+
+With 41900 data samples, 1800 steps, 0.3 learning rate, 150 regularization and layer sizes: [93, 101, 73]
+Training accuracy is 0.9840970756707869
+Testing accuracy is 0.9737470167064439
+
+
+With 41900 data samples, 1800 steps, 0.33 learning rate, 180 regularization and layer sizes: [93, 101, 73]
+Training accuracy is 0.9821374736207417
+Testing accuracy is 0.9742243436754177
